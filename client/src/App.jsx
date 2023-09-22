@@ -1,8 +1,8 @@
 import { ethers } from "ethers";
-import { useEffect, useState } from "react";
-import abi from "./contractJson/SecureMarriage.json";
-import { Marry } from "./components/Marry";
-import { ShowMarriges } from "./components/ShowMarriges";
+import { useContext, useEffect, useState } from "react";
+import abi from "./contractJson/ChatApp.json";
+import CreateAccount from "./components/CreateAccount";
+import { AuthContext } from "./components/Provider/AuthProvider";
 
 const App = () => {
   const [state, setState] = useState({
@@ -10,12 +10,11 @@ const App = () => {
     signer: null,
     contract: null,
   });
-  const [account, setAccount] = useState("Not connected");
-
+  const { account, setAccount, setStateContract } = useContext(AuthContext);
   useEffect(() => {
     const template = async () => {
       try {
-        const contractAddress = "0x87A6bfc79e3cC9Fd1C9605397229E9fF5d1a0F37";
+        const contractAddress = "0x82BdfFb167c23cE744Ce01d1BD2FE12e30Ff789c";
         const contractABI = abi.abi;
         if (window.ethereum) {
           await window.ethereum.request({ method: "eth_requestAccounts" });
@@ -32,6 +31,7 @@ const App = () => {
           });
           setAccount(provider.provider.selectedAddress);
           setState({ provider, signer, contract });
+          setStateContract(contract);
         } else {
           console.log("Please install MetaMask");
         }
@@ -44,10 +44,9 @@ const App = () => {
   }, []);
 
   return (
-    <div className="my-10">
+    <div className="my-2">
       <div className="text-center">Account Connected : {account}</div>
-      <Marry state={state}></Marry>
-      <ShowMarriges state={state}></ShowMarriges>
+      {console.log(account)}
     </div>
   );
 };

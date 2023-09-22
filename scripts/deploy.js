@@ -2,14 +2,12 @@ const { ethers } = require("hardhat");
 const hre = require("hardhat");
 
 async function main() {
-  const SecureMarriageContract = await hre.ethers.getContractFactory(
-    "SecureMarriage"
-  );
+  const ChatAppContract = await hre.ethers.getContractFactory("ChatApp");
   console.log("Deploying contract...");
-  const secureMarriage = await SecureMarriageContract.deploy();
+  const ChatApp = await ChatAppContract.deploy();
 
   // to get address
-  console.log("SimpleStorage deployed to:", secureMarriage.target);
+  console.log("SimpleStorage deployed to:", ChatApp.target);
 }
 
 main()
@@ -19,7 +17,4 @@ main()
     process.exit(1);
   });
 
-
-
-
-  // 0xDE518E411859846F8C758206b783c96f57c96353
+// 0xDE518E411859846F8C758206b783c96f57c96353
