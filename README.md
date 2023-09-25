@@ -1,7 +1,7 @@
 
 # BlockChain ChatApp DApp
 
-**A decentralized chat application built on the Ethereum blockchain.**
+**A decentralized chat application built on the Ethereum Sepolia blockchain.**
 
 [Live Demo](https://smart-chats.netlify.app/)
 
@@ -79,4 +79,3 @@ yarn dev
 For any queries or issues related to the contract or the project, please contact: knkolin9@gmail.com
 ```
 
-This should look more visually appealing on your GitHub repository's README. Let me know if there's anything else you'd like to add or modify!
