@@ -14,7 +14,7 @@ const App = () => {
   useEffect(() => {
     const template = async () => {
       try {
-        const contractAddress = "0x82BdfFb167c23cE744Ce01d1BD2FE12e30Ff789c";
+        const contractAddress = import.meta.env.VITE_CONTRACT_ADDRESS;
         const contractABI = abi.abi;
         if (window.ethereum) {
           await window.ethereum.request({ method: "eth_requestAccounts" });
@@ -46,7 +46,7 @@ const App = () => {
   return (
     <div className="my-2">
       <div className="text-center">Account Connected : {account}</div>
-      {console.log(account)}
+      {/* {console.log(account)} */}
     </div>
   );
 };

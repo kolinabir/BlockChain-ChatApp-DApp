@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const AddFriend = () => {
   const navigate = useNavigate();
   const { stateContract, account } = useContext(AuthContext);
+  const [error, setError] = useState(null); // error handling
   const [userExist, setUserExist] = useState(false);
   useEffect(() => {
     async function checkUserExist() {
@@ -21,10 +22,26 @@ const AddFriend = () => {
     e.preventDefault();
     const address = e.target.address.value;
     const name = e.target.name.value;
-    const transaction = await stateContract?.addFriend(address, name);
-    await transaction.wait();
-    alert("Friend Added");
-    navigate("/LoginState");
+    const friendIsUser = await stateContract?.checkUser(address);
+
+    if (!friendIsUser) {
+      alert("Friend is not a user");
+      window.location.reload();
+    }
+    try {
+      const transaction = await stateContract?.addFriend(address, name);
+      await transaction.wait();
+      alert("Friend Added");
+      navigate("/LoginState");
+    } catch (error) {
+      if (error.message.includes("Already friends")) {
+        const errorMessage = "Already friends";
+        alert(errorMessage);
+        window.location.reload();
+      } else {
+        console.error(error);
+      }
+    }
   };
 
   return (

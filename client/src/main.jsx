@@ -9,6 +9,7 @@ import LoginState from "./components/Home/LoginState";
 import { Link } from "react-router-dom";
 import CreateAccount from "./components/CreateAccount";
 import AddFriend from "./components/AddFriend";
+import MessagePortal from "./components/Message/MessagePortal";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/addafriend",
         element: <AddFriend></AddFriend>,
+      },
+      {
+        path: "/messagePortal",
+        element: <MessagePortal></MessagePortal>,
       },
     ],
   },
